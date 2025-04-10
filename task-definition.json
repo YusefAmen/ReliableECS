@@ -1,0 +1,23 @@
+# task-definition.json
+[
+  {
+    "name": "flask-app",
+    "image": "<IMAGE>",
+    "essential": true,
+    "portMappings": [
+      { "containerPort": 5000, "hostPort": 5000 }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/flask-app",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "flask"
+      }
+    },
+    "environment": [
+      { "name": "DD_API_KEY", "value": "<your-datadog-api-key>" },
+      { "name": "DD_ENV", "value": "prod" }
+    ]
+  }
+]
